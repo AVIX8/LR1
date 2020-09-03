@@ -1,30 +1,26 @@
 window.onload = function () {
-  var initialized = 0;
-  var text = document.getElementById("text");
-  var audio = document.getElementById("audio");
-  var pb = document.getElementById("pb");
-  var progress_bar = document.getElementById("progress_bar");
-  
-  var canvas = document.getElementById("canvas");
+  let initialized = 0;
+  let text = document.getElementById("text");
+  let audio = document.getElementById("audio");
+  let pb = document.getElementById("pb");
+  let progress_bar = document.getElementById("progress_bar");
+  let audioFile = document.getElementById("audioFile");
+  let canvas = document.getElementById("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  var ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d");
+
+  text.addEventListener("click", function() {
+    if (!initialized) {
+      AudioContextInit();
+      initialized = 1;
+    }
+    audioFile.click();
+  });
 
   window.onbeforeunload = () => {
     location.reload(true);
   };
-
-  $(document).ready(() => {
-    console.log("document.ready");
-
-    if (!initialized) {
-      AudioContextInit();
-      document.getElementById("prev").style.opacity = 0;
-      text.style.opacity = 1;
-      initialized = 1;
-      audio.play();
-    }
-  });
 
   document.onkeypress = () => {
     if (initialized) {
@@ -38,7 +34,19 @@ window.onload = function () {
     }
   };
 
-  var pressed = false;
+  //скорее всего это не будет работать в хроме, но нужно проверить
+  //в гугле AudioContext не доступен до первой активности пользователя
+  // $(document).ready(() => {
+  //   console.log("document.ready");
+
+  //   if (!initialized) {
+  //     AudioContextInit();
+  //     initialized = 1;
+  //     audio.play();
+  //   }
+  // });
+
+  let pressed = false;
   progress_bar.onmousedown = () => {
     pressed = true;
   };
@@ -52,16 +60,16 @@ window.onload = function () {
   };
   progress_bar.onclick = setTime;
   function setTime(event) {
-    var x = event.pageX;
-    var y = event.pageY;
-    var w = window.innerWidth;
-    var h = window.innerHeight;
+    let x = event.pageX;
+    let y = event.pageY;
+    let w = window.innerWidth;
+    let h = window.innerHeight;
     audio.currentTime = (audio.duration * (x - w * 0.15)) / (w * 0.7);
   }
 
   function AudioContextInit() {
-    var context = new AudioContext();
-    var analyser = context.createAnalyser();
+    let context = new AudioContext();
+    let analyser = context.createAnalyser();
 
     context.createMediaElementSource(audio).connect(analyser);
     analyser.connect(context.destination);
@@ -71,24 +79,24 @@ window.onload = function () {
       Math.ceil(Math.log2(canvas.width * 1.5)) + 1
     );
 
-    var bufferLength = analyser.frequencyBinCount;
+    let bufferLength = analyser.frequencyBinCount;
     console.log(bufferLength);
 
-    var dataArray = new Uint8Array(bufferLength);
+    let dataArray = new Uint8Array(bufferLength);
 
-    var WIDTH = canvas.width;
-    var HEIGHT = canvas.height;
+    let WIDTH = canvas.width;
+    let HEIGHT = canvas.height;
 
-    var barWidth = 1;
-    var barHeightConst = HEIGHT / 255 / 4;
-    var firstBar = Math.ceil(bufferLength / 256);
-    var lastBar = WIDTH / barWidth + firstBar;
+    let barWidth = 1;
+    let barHeightConst = HEIGHT / 255 / 4;
+    let firstBar = Math.ceil(bufferLength / 256);
+    let lastBar = WIDTH / barWidth + firstBar;
     console.log(firstBar);
 
     function getRGB(H) {
-      var r = H * 1.5;
-      var g = 0;
-      var b = 255 - H / 1.5;
+      let r = H * 1.5;
+      let g = 0;
+      let b = 255 - H / 1.5;
       return "rgb(" + r + "," + g + "," + b + ")";
     }
 
@@ -104,7 +112,7 @@ window.onload = function () {
       ctx.fillStyle = "#222";
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
       s = 0;
-      for (var i = firstBar; i < lastBar; i++) {
+      for (let i = firstBar; i < lastBar; i++) {
         H = dataArray[i];
 
         barHeight = H * barHeightConst;
@@ -122,4 +130,11 @@ window.onload = function () {
       pb.style.width = (audio.currentTime / audio.duration) * 100 + "%";
     }
   }
+
+  audioFile.onchange = function() {
+    let file = document.getElementById('audioFile').files[0];
+    audio.src = URL.createObjectURL(file);
+    audio.play();
+    text.innerText = file.name.split('.').slice(0, -1).join('.');
+  };
 };

@@ -79,4 +79,13 @@
 		$ git tag -d v0.2
         $ git tag --list
 
-        
+        $ git add .
+        $ git commit -m 'добавил тег'
+
+14:
+    создание ветки:
+		$ git branch dev
+	перемещение по ним:
+		$ git checkout dev
+    
+        добавил возможность выбрать аудиофайл

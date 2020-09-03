@@ -50,6 +50,6 @@ audio {
   font-family: "Roboto", sans-serif;
   text-align: center;
   word-wrap: break-word;
-  opacity: 0;
-  cursor: default;
+  cursor: pointer;
+  color: blue;
 }
