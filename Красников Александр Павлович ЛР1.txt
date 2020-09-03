@@ -6,3 +6,9 @@
 	$ git add .
 6: $ git commit -m 'первый коммит'
 7: добавил в этот файл описание всех действий
+8: $ git add .
+9: $ git commit -m 'второй коммит'
+10: да
+11:
+	игноритрование:
+		добавил someLocalConfig.js в .gitignore
