@@ -109,4 +109,23 @@
         $ git merge dev
 
         исправил конфликт, удалив оба комментария
+        $ git commit -m 'Слил dev, исправил конфликт'
+15:
+    механизм прятанья:
+        добавил коммент в index.html
+        $ git stash
+        $ git stash list
+        $ git stash pop
         
+        $ git stash
+        $ git stash list
+        $ git stash apply
+
+        $ git stash
+        $ git stash list
+        $ git stash apply stash@{0}
+
+        $ git stash drop 0
+        $ git stash drop 0
+        $ git checkout -- index.html
+16:
