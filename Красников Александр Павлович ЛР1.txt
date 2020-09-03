@@ -89,3 +89,14 @@
 		$ git checkout dev
     
         добавил возможность выбрать аудиофайл
+        $ git add .
+        $ git commit -m 'добавил возможность выбрать аудиофайл'
+    
+    объединение и удаление:
+        $ git checkout master
+        $ git merge dev
+        $ git branch -d dev
+    
+    решение конфликтов слияния:
+
+        
