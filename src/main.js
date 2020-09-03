@@ -36,15 +36,15 @@ window.onload = function () {
 
   //скорее всего это не будет работать в хроме, но нужно проверить
   //в гугле AudioContext не доступен до первой активности пользователя
-  // $(document).ready(() => {
-  //   console.log("document.ready");
+  $(document).ready(() => {
+    console.log("document.ready");
 
-  //   if (!initialized) {
-  //     AudioContextInit();
-  //     initialized = 1;
-  //     audio.play();
-  //   }
-  // });
+    if (!initialized) {
+      AudioContextInit();
+      initialized = 1;
+      audio.play();
+    }
+  });
 
   let pressed = false;
   progress_bar.onmousedown = () => {
