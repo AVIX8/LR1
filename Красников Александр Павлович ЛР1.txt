@@ -129,3 +129,9 @@
         $ git stash drop 0
         $ git checkout -- index.html
 16:
+    $ git remote add origin git@github.com:AVIX8/LR1.git
+    $ git branch -M master
+    $ git push -u origin master
+
+    $ git clone git@github.com:AVIX8/LR1.git
+    
