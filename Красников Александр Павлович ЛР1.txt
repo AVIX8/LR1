@@ -12,3 +12,14 @@
 11:
 	игноритрование:
 		добавил someLocalConfig.js в .gitignore
+        $ git add .
+		$ git commit -m 'добавил someLocalConfig.js в .gitignore'
+    
+    сравнение:
+        добавил несколько файлов
+        $ git add .
+        $ git commit -m 'добавил несколько файлов'
+        понял что не сохранил этот файл
+        $ git log
+        $ git reset --soft 5ab630
+        сохранил этот файл

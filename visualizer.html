@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <link rel="shortcut icon" href="{% static 'icon.png' %}" />
+    <link href=" {% static 'vizualizer/style.css' %} " rel="stylesheet" />
+    <script src=" {% static 'js/jquery-3.4.1.min.js' %} "></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    <title>
+        {{ audio.artist|truncatechars:49 }} — {{ audio.title|truncatechars:49 }}
+    </title>
+</head>
+
+<body>
+    <div id="content">
+        <canvas id="canvas"></canvas>
+        <div id="prev"></div>
+        <div id="text">
+            {{ audio.artist|truncatechars:49 }} — {{ audio.title|truncatechars:49 }}
+        </div>
+        <div id="progress_bar">
+            <div id="pb"></div>
+        </div>
+
+        <audio id="audio" src=" {% url 'audio_url' audio.id %} " type="audio/mpeg" controls hidden loop></audio>
+    </div>
+
+    <script src=" {% static 'vizualizer/main.js' %} "></script>
+</body>
+
+</html>
