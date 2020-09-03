@@ -33,3 +33,7 @@
 
     удаление:
         добавил someFile.txt
+        $ git add .
+		$ git commit -m 'добавил someFile.txt'
+
+        $ git rm someFile.txt
