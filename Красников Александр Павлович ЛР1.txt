@@ -37,3 +37,14 @@
 		$ git commit -m 'добавил someFile.txt'
 
         $ git rm someFile.txt
+        $ git add .
+		$ git commit -m 'удалил someFile.txt'
+    
+    перемещение:
+        $ mkdir src
+		$ git mv "Stole the Show - Kygo, Parson James.mp3" "src/Stole the Show - Kygo, Parson James.mp3"
+		$ git mv jquery-3.4.1.min.js src/jquery-3.4.1.min.js
+		$ git mv main.js src/main.js
+		$ git mv style.css src/style.css
+		$ git mv visualizer.html index.html
+        изменил пути в index.html
