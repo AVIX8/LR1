@@ -48,3 +48,25 @@
 		$ git mv style.css src/style.css
 		$ git mv visualizer.html index.html
         изменил пути в index.html
+		$ git add .
+		$ git commit -m 'переместил/переименовал файлы'
+12:
+    $ git log
+    $ git log --pretty=oneline
+    $ git log --full-history
+13:
+    отмена сделанных изменений:
+
+        допустим, я случайно удалил покдлючение гугл шрифтов в index.html
+        $ git checkout -- index.html
+
+        допустим, я случайно удалил покдлючение гугл шрифтов в index.html и сделал коммит
+        $ git add .
+        $ git commit -m 'допустим, я случайно удалил подключение гугл шрифтов'
+
+        $ git log --pretty=oneline
+        $ git reset --soft 18f6a0
+        $ git reset HEAD index.html
+        $ git checkout -- index.html
+
+        
